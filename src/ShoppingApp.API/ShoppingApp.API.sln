@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingApp.API", "ShoppingApp.API\ShoppingApp.API.csproj", "{2AAD17E5-66EC-4686-B841-E08D218F7677}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AAD17E5-66EC-4686-B841-E08D218F7677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AAD17E5-66EC-4686-B841-E08D218F7677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AAD17E5-66EC-4686-B841-E08D218F7677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AAD17E5-66EC-4686-B841-E08D218F7677}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C591E63F-55D7-4D7C-A878-3281A20BF4C3}
+	EndGlobalSection
+EndGlobal
