@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ShoppingApp.Infrastructure.SqlServer.Database
 {
-    class ShoppingAppContext
+    public class ShoppingAppContext
     {
     }
 }
