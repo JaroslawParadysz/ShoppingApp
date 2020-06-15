@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShoppingApp.Domain.Products;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ShoppingApp.Infrastructure.SqlServer
+namespace ShoppingApp.Infrastructure.SqlServer.TypesConfigurations
 {
     internal class ProductEntityTypeConfiguration : IEntityTypeConfiguration<Product>
     {

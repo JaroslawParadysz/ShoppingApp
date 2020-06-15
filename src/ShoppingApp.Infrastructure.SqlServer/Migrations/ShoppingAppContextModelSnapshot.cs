@@ -70,7 +70,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
 
                             b1.HasIndex("ProductId");
 
-                            b1.ToTable("OrderProduct");
+                            b1.ToTable("OrderProducts");
 
                             b1.WithOwner("Order")
                                 .HasForeignKey("OrderId");

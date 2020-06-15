@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShoppingApp.Domain.Orders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ShoppingApp.Infrastructure.SqlServer
+namespace ShoppingApp.Infrastructure.SqlServer.TypesConfigurations
 {
     internal class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
     {
@@ -18,6 +15,7 @@ namespace ShoppingApp.Infrastructure.SqlServer
 
             builder.OwnsMany<OrderProduct>(orderProducts, x =>
             {
+                x.ToTable("OrderProducts");
                 x.HasKey(y => y.OrderProductId);
                 x.WithOwner(y => y.Order).HasForeignKey(x => x.OrderId);
                 x.HasOne(y => y.Product);
