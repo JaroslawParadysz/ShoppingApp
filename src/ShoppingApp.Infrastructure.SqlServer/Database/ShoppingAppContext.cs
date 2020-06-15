@@ -12,5 +12,10 @@ namespace ShoppingApp.Infrastructure.SqlServer.Database
         public ShoppingAppContext(DbContextOptions<ShoppingAppContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ShoppingAppContext).Assembly);
+        }
     }
 }
