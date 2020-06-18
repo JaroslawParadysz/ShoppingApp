@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShoppingApp.Application.Configuration.Commands;
+using ShoppingApp.Application.Configuration.UnitOfWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;
 
 namespace ShoppingApp.API
@@ -27,6 +28,7 @@ namespace ShoppingApp.API
             });
             services.AddControllers();
             services.AddMediatR(typeof(ICommand));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkPipelineBehaviour<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
