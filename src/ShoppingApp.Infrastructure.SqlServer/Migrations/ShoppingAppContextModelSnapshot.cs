@@ -75,7 +75,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.WithOwner("Order")
                                 .HasForeignKey("OrderId");
 
-                            b1.HasOne("ShoppingApp.Domain.Products.Product", "Product")
+                            b1.HasOne("ShoppingApp.Domain.Products.Product", null)
                                 .WithMany()
                                 .HasForeignKey("ProductId")
                                 .OnDelete(DeleteBehavior.Cascade)

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ShoppingApp.Application.Products.CreateProduct;
+using ShoppingApp.Application.Service;
 using System.Threading.Tasks;
 
 namespace ShoppingApp.API.Service
@@ -19,7 +19,7 @@ namespace ShoppingApp.API.Service
         [HttpGet]
         public async Task<IActionResult> PopulateDb()
         {
-            await _mediator.Send(new CreateProductCommand());
+            await _mediator.Send(new PopulateDbCommand());
             return Created(string.Empty, null);
         }
     }

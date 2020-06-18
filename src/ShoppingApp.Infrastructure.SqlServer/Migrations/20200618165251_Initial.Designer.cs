@@ -10,7 +10,7 @@ using ShoppingApp.Infrastructure.SqlServer.Database;
 namespace ShoppingApp.Infrastructure.SqlServer.Migrations
 {
     [DbContext(typeof(ShoppingAppContext))]
-    [Migration("20200615055002_Initial")]
+    [Migration("20200618165251_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,7 +77,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.WithOwner("Order")
                                 .HasForeignKey("OrderId");
 
-                            b1.HasOne("ShoppingApp.Domain.Products.Product", "Product")
+                            b1.HasOne("ShoppingApp.Domain.Products.Product", null)
                                 .WithMany()
                                 .HasForeignKey("ProductId")
                                 .OnDelete(DeleteBehavior.Cascade)
