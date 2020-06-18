@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using ShoppingApp.Infrastructure.SqlServer.Database;
-using System.Diagnostics;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,10 +16,17 @@ namespace ShoppingApp.Application.Configuration.UnitOfWork
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            Trace.WriteLine("before");
-            TResponse response = await next();
-            Trace.WriteLine("after");
-            return response;
+            try
+            {
+                TResponse response = await next();
+                await _shoppingAppContext.SaveChangesAsync();
+                return response;
+            }
+            catch (Exception e)
+            {
+                //TODO logs
+                throw e;
+            }            
         }
     }
 }
