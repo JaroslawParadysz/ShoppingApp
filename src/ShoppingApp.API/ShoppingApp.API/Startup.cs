@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using ShoppingApp.API.Extensions;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Application.Configuration.UnitOfWork;
+using ShoppingApp.Domain.SeedWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;
+using ShoppingApp.Infrastructure.SqlServer.Domain;
 
 namespace ShoppingApp.API
 {
@@ -28,6 +30,8 @@ namespace ShoppingApp.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"));
             });
             services.AddControllers();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddCQRS();
         }
 

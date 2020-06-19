@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using ShoppingApp.Application.Configuration.Commands;
+using ShoppingApp.Domain.SeedWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;
 using System;
 using System.Threading;
@@ -8,10 +10,10 @@ namespace ShoppingApp.Application.Configuration.UnitOfWork
 {
     public class UnitOfWorkPipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ShoppingAppContext _shoppingAppContext;
-        public UnitOfWorkPipelineBehaviour(ShoppingAppContext shoppingAppContext)
+        private readonly IUnitOfWork _unitOfWork;
+        public UnitOfWorkPipelineBehaviour(IUnitOfWork shoppingAppContext)
         {
-            _shoppingAppContext = shoppingAppContext;
+            _unitOfWork = shoppingAppContext;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -19,7 +21,10 @@ namespace ShoppingApp.Application.Configuration.UnitOfWork
             try
             {
                 TResponse response = await next();
-                await _shoppingAppContext.SaveChangesAsync();
+                if (typeof(ICommand).IsAssignableFrom(request.GetType()))
+                {
+                    await _unitOfWork.CommitAsync(cancellationToken);
+                }
                 return response;
             }
             catch (Exception e)
