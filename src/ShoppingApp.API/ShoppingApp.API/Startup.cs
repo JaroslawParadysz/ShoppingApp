@@ -11,6 +11,7 @@ using ShoppingApp.Application.Configuration.UnitOfWork;
 using ShoppingApp.Domain.SeedWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;
 using ShoppingApp.Infrastructure.SqlServer.Domain;
+using ShoppingApp.Infrastructure.SqlServer.SeedWork;
 
 namespace ShoppingApp.API
 {
@@ -32,6 +33,7 @@ namespace ShoppingApp.API
             services.AddControllers();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>();
             services.AddCQRS();
         }
 
