@@ -1,5 +1,9 @@
-﻿using ShoppingApp.Application.Configuration.Queries;
-using System;
+﻿using Dapper;
+using ShoppingApp.Application.Configuration.Queries;
+using ShoppingApp.Infrastructure.SqlServer.SeedWork;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,9 +11,20 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
 {
     public class GetOrderDetailsHandler : IQueryHandler<GetOrderDetailsQuery, OrderDto>
     {
-        public Task<OrderDto> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
+        private ISqlConnectionFactory _sqlConnectionFactory;
+
+        public GetOrderDetailsHandler(ISqlConnectionFactory sqlConnectionFactory)
         {
-            throw new NotImplementedException();
+            _sqlConnectionFactory = sqlConnectionFactory;
+        }
+
+        public async Task<OrderDto> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
+        {
+            IDbConnection dbConnection = _sqlConnectionFactory.GetOpenConnection();
+            const string sql = "SELECT";
+            IEnumerable<OrderDto> orders = await dbConnection.QueryAsync<OrderDto>(sql, new { request.OrderId });
+
+            return orders.SingleOrDefault();
         }
     }
 }
