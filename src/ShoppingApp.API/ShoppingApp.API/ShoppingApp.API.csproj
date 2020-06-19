@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Orders\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\ShoppingApp.Application\ShoppingApp.Application.csproj" />
     <ProjectReference Include="..\..\ShoppingApp.Infrastructure.SqlServer\ShoppingApp.Infrastructure.SqlServer.csproj" />
   </ItemGroup>

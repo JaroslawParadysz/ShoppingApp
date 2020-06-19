@@ -33,7 +33,7 @@ namespace ShoppingApp.API
             services.AddControllers();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ISqlConnectionFactory, SqlConnectionFactory>();
+            services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddCQRS();
         }
 

@@ -21,7 +21,7 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
         public async Task<OrderDto> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
         {
             IDbConnection dbConnection = _sqlConnectionFactory.GetOpenConnection();
-            const string sql = "SELECT";
+            const string sql = "SELECT OrderId, Title FROM Orders";
             IEnumerable<OrderDto> orders = await dbConnection.QueryAsync<OrderDto>(sql, new { request.OrderId });
 
             return orders.SingleOrDefault();

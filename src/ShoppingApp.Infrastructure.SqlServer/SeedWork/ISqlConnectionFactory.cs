@@ -1,6 +1,9 @@
-﻿namespace ShoppingApp.Infrastructure.SqlServer.SeedWork
+﻿using System.Data;
+
+namespace ShoppingApp.Infrastructure.SqlServer.SeedWork
 {
-    public interface IDbConnectionFactory
+    public interface ISqlConnectionFactory
     {
+        IDbConnection GetOpenConnection();
     }
 }

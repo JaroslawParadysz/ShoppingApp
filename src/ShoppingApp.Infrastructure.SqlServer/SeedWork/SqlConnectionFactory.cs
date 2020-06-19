@@ -9,6 +9,11 @@ namespace ShoppingApp.Infrastructure.SqlServer.SeedWork
         private IDbConnection _dbConnection;
         private string _connectionString;
 
+        public SqlConnectionFactory(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public void Dispose()
         {
             if (_dbConnection != null && _dbConnection.State == ConnectionState.Open)
