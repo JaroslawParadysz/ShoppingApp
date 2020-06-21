@@ -28,7 +28,8 @@ namespace ShoppingApp.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ShoppingAppContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"),
+                    options => options.EnableRetryOnFailure());
             });
             services.AddControllers();
 
