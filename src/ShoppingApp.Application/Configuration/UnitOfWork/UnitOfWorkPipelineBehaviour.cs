@@ -49,13 +49,22 @@ namespace ShoppingApp.Application.Configuration.UnitOfWork
 
         private async Task<TResponse> ProcessCommand(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            using (var transaction = _shoppingAppContext.Database.BeginTransaction(IsolationLevel.RepeatableRead))
+            TResponse response = default(TResponse);
+            var strategy = _shoppingAppContext.Database.CreateExecutionStrategy();
+
+            await strategy.ExecuteAsync(async () =>
             {
-                TResponse response = await next();
-                await _unitOfWork.CommitAsync();
-                await transaction.CommitAsync();
-                return response;
+                using (var transaction = _shoppingAppContext.Database.BeginTransaction(IsolationLevel.RepeatableRead))
+                {
+                    response = await next();
+                    await _unitOfWork.CommitAsync();
+                    await transaction.CommitAsync();
+                    return response;
+                }
             }
+            );
+
+            return response;
         }
 
         private static bool IsCommand(TRequest request)
