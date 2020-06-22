@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using ShoppingApp.Application.Configuration.Queries;
-using ShoppingApp.Infrastructure.SqlServer.SeedWork;
+using ShoppingApp.Application.SeedWork;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

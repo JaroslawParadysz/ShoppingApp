@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace ShoppingApp.Infrastructure.SqlServer.SeedWork
+namespace ShoppingApp.Application.SeedWork
 {
     public interface ISqlConnectionFactory
     {

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using ShoppingApp.API.Extensions;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Application.Configuration.UnitOfWork;
+using ShoppingApp.Application.SeedWork;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.SeedWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;

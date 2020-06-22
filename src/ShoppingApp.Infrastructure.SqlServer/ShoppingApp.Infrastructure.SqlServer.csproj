@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingApp.Application\ShoppingApp.Application.csproj" />
     <ProjectReference Include="..\ShoppingApp.Domain\ShoppingApp.Domain.csproj" />
   </ItemGroup>
 
