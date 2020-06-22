@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\Product\" />
-    <Folder Include="Domain\Order\" />
   </ItemGroup>
 
   <ItemGroup>

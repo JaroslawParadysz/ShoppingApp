@@ -8,9 +8,11 @@ using Microsoft.Extensions.Hosting;
 using ShoppingApp.API.Extensions;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Application.Configuration.UnitOfWork;
+using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.SeedWork;
 using ShoppingApp.Infrastructure.SqlServer.Database;
 using ShoppingApp.Infrastructure.SqlServer.Domain;
+using ShoppingApp.Infrastructure.SqlServer.Domain.Order;
 using ShoppingApp.Infrastructure.SqlServer.SeedWork;
 
 namespace ShoppingApp.API
@@ -35,6 +37,7 @@ namespace ShoppingApp.API
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddCQRS();
         }
 
