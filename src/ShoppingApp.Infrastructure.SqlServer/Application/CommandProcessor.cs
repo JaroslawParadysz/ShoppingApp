@@ -25,10 +25,8 @@ namespace ShoppingApp.Infrastructure.SqlServer.Application
 
         public async Task<TResponse> ProcessCommand(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
-            TResponse response = default(TResponse);
             var strategy = _shoppingAppContext.Database.CreateExecutionStrategy();
-
-            await strategy.ExecuteAsync(async () =>
+            TResponse response = await strategy.ExecuteAsync(async () =>
             {
                 using (var transaction = _shoppingAppContext.Database.BeginTransaction(IsolationLevel.RepeatableRead))
                 {

@@ -43,7 +43,6 @@ namespace ShoppingApp.Application.Service
 
             newProducts = CreateProducts();
             await _productRepository.AddRangeAsync(newProducts);
-            await _unitOfWork.CommitAsync();
 
             Order order = Order.Create(_orderName);
             AddProductsToOrder(newProducts, order);

@@ -46,7 +46,7 @@ namespace ShoppingApp.Application.Configuration.UnitOfWork
         {
             return request.GetType().GetInterfaces()
                 .Any(x =>
-                    x is ICommand
+                    x == typeof(ICommand)
                     || (x.IsGenericType && x.GetGenericTypeDefinition() == typeof(ICommand<>)));
         }
     }
