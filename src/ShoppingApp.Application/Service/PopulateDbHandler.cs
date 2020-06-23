@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.Products;
-using ShoppingApp.Infrastructure.SqlServer.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +13,11 @@ namespace ShoppingApp.Application.Service
 {
     public class PopulateDbHandler : ICommandHandler<PopulateDbCommand>
     {
-        private readonly ShoppingAppContext _shoppingAppContext;
+        private readonly IOrderRepository _shoppingAppContext;
         private readonly IEnumerable<string> _productNames = new List<string>() { "Maslo", "Chleb" };
         private readonly string _orderName = "Zakupy";
 
-        public PopulateDbHandler(ShoppingAppContext shoppingAppContext)
+        public PopulateDbHandler(IOrderRepository shoppingAppContext)
         {
             _shoppingAppContext = shoppingAppContext;
         }
