@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ShoppingApp.Application.Orders.UpdateOrderDetails
 {
-    public class UpdaterderDetailsHandler : ICommandHandler<UpdateOrderDetailsCommand, Unit>
+    public class UpdateOrderDetailsHandler : ICommandHandler<UpdateOrderDetailsCommand, Unit>
     {
         private readonly IOrderRepository _orderRepository;
 
-        public UpdaterderDetailsHandler(IOrderRepository orderRepository)
+        public UpdateOrderDetailsHandler(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
         }

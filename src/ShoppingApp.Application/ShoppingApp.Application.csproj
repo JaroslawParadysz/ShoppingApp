@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingApp.Domain\ShoppingApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

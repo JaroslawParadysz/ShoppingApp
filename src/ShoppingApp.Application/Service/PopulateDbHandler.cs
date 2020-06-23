@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.Products;
+using ShoppingApp.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,32 +14,41 @@ namespace ShoppingApp.Application.Service
 {
     public class PopulateDbHandler : ICommandHandler<PopulateDbCommand>
     {
-        private readonly IOrderRepository _shoppingAppContext;
+        private readonly IOrderRepository _orderRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
         private readonly IEnumerable<string> _productNames = new List<string>() { "Maslo", "Chleb" };
         private readonly string _orderName = "Zakupy";
 
-        public PopulateDbHandler(IOrderRepository shoppingAppContext)
+        public PopulateDbHandler(
+            IOrderRepository shoppingAppContext,
+            IProductRepository productRepository,
+            IUnitOfWork unitOfWork)
         {
-            _shoppingAppContext = shoppingAppContext;
+            _orderRepository = shoppingAppContext;
+            _productRepository = productRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Unit> Handle(PopulateDbCommand request, CancellationToken cancellationToken)
         {
-            Order o = _shoppingAppContext.Orders.FirstOrDefault();
-            bool anyProductExists = await _shoppingAppContext.Products.AnyAsync();
+            List<Product> newProducts = new List<Product>(); ;
+
+            bool anyProductExists = await _productRepository.AnyAsync();
             if (anyProductExists)
             {
                 throw new InvalidOperationException();
             }
 
-            List<Product> newProducts = CreateProducts();
-            await _shoppingAppContext.Products.AddRangeAsync(newProducts);
-            await _shoppingAppContext.SaveChangesAsync();
+            newProducts = CreateProducts();
+            await _productRepository.AddRangeAsync(newProducts);
+            await _unitOfWork.CommitAsync();
 
             Order order = Order.Create(_orderName);
             AddProductsToOrder(newProducts, order);
 
-            await _shoppingAppContext.Orders.AddAsync(order);
+            await _orderRepository.AddAsync(order);
             return Unit.Value;
         }
 
