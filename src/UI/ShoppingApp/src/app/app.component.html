@@ -42,7 +42,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #9299a0;
+    background-color: #b2b8be;
     color: white;
     font-weight: 600;
   }
@@ -265,6 +265,23 @@
     z-index: -10;
     width: 1920px;
   }
+
+  .link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .link-container > a {
+    flex: 1 0 auto;
+    padding: 0.4rem;
+    text-align: center;
+    color: purple;
+  }
+
+  .link-container> a:hover {
+    background-color: grey;
+}
 </style>
 
 <!-- Toolbar -->
@@ -272,12 +289,14 @@
 
   <span>Shopping App</span>
   <div class="spacer"></div>
+  <div class="link-container">
     <a [routerLink] = "['']">
       <h3>Orders</h3>      
     </a>
     <a>
       <h3>Products</h3>
     </a>
+  </div>
 </div>
 
 <div class="content" role="main">
