@@ -1,0 +1,13 @@
+.order-list-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-container {
+    flex: 1 0 100%;
+    margin: 0.4rem;
+    padding: 0.4rem;
+    background-color: gray;
+    border-radius: 0.3rem;
+    text-align: center;    
+}
