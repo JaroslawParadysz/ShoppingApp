@@ -21,14 +21,26 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
         public async Task<OrderDto> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
         {
             IDbConnection dbConnection = _sqlConnectionFactory.GetOpenConnection();
-            const string sql = "SELECT " +
+            const string orderSql = "SELECT " +
                 "OrderId, " +
                 "Title " +
                 "FROM " +
-                "Orders";
-            IEnumerable<OrderDto> orders = await dbConnection.QueryAsync<OrderDto>(sql, new { request.OrderId });
+                "Orders " +
+                "WHERE " +
+                "OrderId = @OrderId";
+            OrderDto order = await dbConnection.QuerySingleOrDefaultAsync<OrderDto>(orderSql, new { request.OrderId });
 
-            return orders.SingleOrDefault();
+            const string orderProductsSql = "SELECT " +
+                "P.Name " +
+                "FROM " +
+                "OrderProducts op " +
+                "INNER JOIN Products P " +
+                "ON OP.ProductId = P.ProductId " +
+                "WHERE OrderId = @OrderId ";
+            IEnumerable<OrderProductDto> orderProducts = await dbConnection.QueryAsync<OrderProductDto>(orderProductsSql, new { request.OrderId });
+
+            order.OrderProducts = orderProducts.AsList();
+            return order;
         }
     }
 }

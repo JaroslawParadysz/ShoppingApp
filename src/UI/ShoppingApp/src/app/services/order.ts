@@ -8,4 +8,8 @@ export class OrderService {
     getOrders() {
         return this.http.get('https://localhost:44337/api/orders');
     }
+
+    getOrderDetails() {
+        re
+    }
 }

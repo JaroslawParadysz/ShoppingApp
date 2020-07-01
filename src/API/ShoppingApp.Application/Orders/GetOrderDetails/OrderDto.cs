@@ -8,5 +8,6 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
     {
         public Guid OrderId { get; set; }
         public string Title { get; set; }
+        public List<OrderProductDto> OrderProducts { get; set; }
     }
 }
