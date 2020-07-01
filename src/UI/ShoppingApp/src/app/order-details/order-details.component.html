@@ -1,8 +1,12 @@
 <div *ngIf="order">
-    <p>
-        {{order.title}}
-    </p>
-    <div *ngFor="let product of order.orderProducts">
-        <h2>{{product.name}}</h2>
+    <div class="order-details-header">
+        <p>
+            {{order.title}}
+        </p>
+    </div>
+    <div *ngFor="let product of order.orderProducts" class="order-details-container">
+        <div class="order-details-container-item">
+            <span>{{product.name}}</span>
+        </div>
     </div>
 </div>
