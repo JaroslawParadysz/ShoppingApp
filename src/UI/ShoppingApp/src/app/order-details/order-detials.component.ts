@@ -1,3 +1,4 @@
+import { OrderService } from './../services/order';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -6,7 +7,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class OrderDetailsComponent implements OnInit {
-    constructor() { }
+    orderId;
+    order;
+
+    constructor(
+        private service: OrderService,
+        private route: ActivatedRoute) {
+            route.paramMap.subscribe(x => {
+                this.orderId = x.get('orderId');
+                service.getOrderDetails(this.orderId)
+                    .subscribe(y => this.order = y);
+            });
+        }
 
     ngOnInit() { }
 }

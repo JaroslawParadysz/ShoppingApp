@@ -1,7 +1,6 @@
 <div class="order-list-container">
     <div *ngFor="let order of orders">
         <div class="order-container">
-            <p>{{order.orderId}}</p>
             <a [routerLink]="'order/'+ order.orderId">{{order.title}}</a>
         </div>
     </div>

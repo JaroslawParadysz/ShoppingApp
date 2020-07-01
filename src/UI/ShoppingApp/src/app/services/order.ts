@@ -9,7 +9,7 @@ export class OrderService {
         return this.http.get('https://localhost:44337/api/orders');
     }
 
-    getOrderDetails() {
-        re
+    getOrderDetails(orderId) {
+        return this.http.get('https://localhost:44337/api/orders/' + orderId);
     }
 }
