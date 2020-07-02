@@ -2,6 +2,7 @@
 using ShoppingApp.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ShoppingApp.Domain.Orders
 {
@@ -30,6 +31,11 @@ namespace ShoppingApp.Domain.Orders
         public void UpdateTitle(string newTitle)
         {
             Title = newTitle;
+        }
+
+        public void UpdateProduct(Guid orderProductId, bool purchased)
+        {
+            _orderProducts.Single(x => x.OrderProductId == orderProductId).UpdatePurchased(purchased);
         }
     }
 }

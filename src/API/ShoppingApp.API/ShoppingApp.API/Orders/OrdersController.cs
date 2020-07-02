@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Application.Orders.GetOrderDetails;
 using ShoppingApp.Application.Orders.GetOrders;
 using ShoppingApp.Application.Orders.UpdateOrderDetails;
+using ShoppingApp.Application.Orders.UpdateOrderProduct;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -43,5 +44,17 @@ namespace ShoppingApp.API.Orders
             await _mediator.Send(command);
             return Ok();
         }
-    }
+
+        [HttpPut("{orderId}/order-product/{orderProductId}")]
+        public async Task<IActionResult> UpdateOrderProduct(
+            [FromRoute]Guid orderId,
+            [FromRoute]Guid orderProductId,
+            [FromBody]UpdateOrderProductRequest updateOrderProductRequest)
+        {
+            UpdateOrderProductCommand command = new UpdateOrderProductCommand(orderId, orderProductId, updateOrderProductRequest.Purchased);
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+    }   
 }

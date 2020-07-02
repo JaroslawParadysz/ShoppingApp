@@ -16,6 +16,11 @@ namespace ShoppingApp.Domain.Orders
         {
         }
 
+        internal void UpdatePurchased(bool purchased)
+        {
+            Purchased = purchased;
+        }
+
         internal static OrderProduct Create(Order order, Guid productId, int quantity)
         {
             return new OrderProduct()
