@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingApp.Infrastructure.SqlServer.Database;
 
 namespace ShoppingApp.Infrastructure.SqlServer.Migrations
 {
     [DbContext(typeof(ShoppingAppContext))]
-    partial class ShoppingAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200702173917_Added-Purchased-Column")]
+    partial class AddedPurchasedColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

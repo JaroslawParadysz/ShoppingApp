@@ -10,6 +10,7 @@ namespace ShoppingApp.Domain.Orders
         public Guid ProductId { get; private set; }
         public int Quantity { get; private set; }
         public Order Order { get; private set; }
+        public bool Purchased { get; private set; }
 
         private OrderProduct()
         {
