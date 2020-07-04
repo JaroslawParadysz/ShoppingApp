@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShoppingApp.Application.Orders.GetOrderDetails
+﻿namespace ShoppingApp.Application.Orders.GetOrderDetails
 {
     public class OrderProductDto
     {
         public string Name { get; set; }
+        public bool Purchased { get; set; }
+        public int Quantity { get; set; }
     }
 }

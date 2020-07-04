@@ -31,12 +31,12 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
             OrderDto order = await dbConnection.QuerySingleOrDefaultAsync<OrderDto>(orderSql, new { request.OrderId });
 
             const string orderProductsSql = "SELECT " +
-                "P.Name " +
-                "FROM " +
-                "OrderProducts op " +
-                "INNER JOIN Products P " +
-                "ON OP.ProductId = P.ProductId " +
-                "WHERE OrderId = @OrderId ";
+                "p.Name, " +
+                "OP.Purchased, " +
+                "OP.Quantity " +
+                "FROM OrderProducts OP " +
+                "INNER JOIN Products P ON OP.ProductId = P.ProductId " +
+                "WHERE OrderId = @OrderId";
             IEnumerable<OrderProductDto> orderProducts = await dbConnection.QueryAsync<OrderProductDto>(orderProductsSql, new { request.OrderId });
 
             order.OrderProducts = orderProducts.AsList();

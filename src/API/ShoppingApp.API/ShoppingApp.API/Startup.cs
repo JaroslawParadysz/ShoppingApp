@@ -17,6 +17,7 @@ using ShoppingApp.Infrastructure.SqlServer.Domain;
 using ShoppingApp.Infrastructure.SqlServer.Domain.Order;
 using ShoppingApp.Infrastructure.SqlServer.Domain.Product;
 using ShoppingApp.Infrastructure.SqlServer.SeedWork;
+using System;
 
 namespace ShoppingApp.API
 {
@@ -49,15 +50,21 @@ namespace ShoppingApp.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use(async (context, next) =>
+            {
+                try
+                {
+                    await next();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            });
             app.UseCors(options =>
                 options.WithOrigins("http://localhost:4200")
                 .AllowAnyHeader()
                 .AllowAnyMethod());
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
 
             app.UseHttpsRedirection();
 
