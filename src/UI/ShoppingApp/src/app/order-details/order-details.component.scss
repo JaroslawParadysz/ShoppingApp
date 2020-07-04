@@ -2,12 +2,42 @@
     text-align: center;
 }
 
+.order-details-container-header {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr 1fr 1fr;
+    background-color: lightgray;
+}
+
+.order-details-container-header :nth-child(2) {
+    border-left: solid thin grey;
+    border-right: solid thin grey;
+}
+
+.order-details-container-header :nth-child(3) {
+    border-right: solid thin grey;
+}
+
+.order-details-container-header > span {
+    text-align: center;
+}
+
 .order-details-container {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr 1fr 1fr;
+}
+
+.order-details-container-center-item {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .order-details-container-item {
-    flex: 1;
+    flex: 1 0 auto;
     text-align: center;
 }
+
+span {
+    padding: 0.5rem;
+}
+

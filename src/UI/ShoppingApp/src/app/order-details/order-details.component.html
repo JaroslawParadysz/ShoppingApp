@@ -4,9 +4,21 @@
             {{order.title}}
         </p>
     </div>
-    <div *ngFor="let product of order.orderProducts" class="order-details-container">
-        <div class="order-details-container-item">
+    <div class="order-details-container-header">
+        <span>No.</span>
+        <span>Product Name</span>
+        <span>Quantity</span>
+        <span>Purchased</span>
+    </div>
+    <div class="order-details-container" *ngFor="let product of order.orderProducts; index as number">
+            <span>{{number + 1}}</span>
             <span>{{product.name}}</span>
-        </div>
+            <span class="order-details-container-center-item">{{product.quantity}}</span>
+            <div class="order-details-container-center-item">
+                <input
+                    type="checkbox" 
+                    [checked]="product.purchased" 
+                    (change)="product.purchased = !product.purchased">
+            </div>
     </div>
 </div>
