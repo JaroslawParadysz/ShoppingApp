@@ -23,7 +23,32 @@
     justify-content: center;
 }
 
-.order-details-container-header, .order-details-container-center-item, .order-details-container-item {
+.order-details-container-header,
+.order-details-container-center-item,
+.order-details-container-item {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+
+.order-details-card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-details-card {
+    flex: 1 0 100%;
+    border: solid thin black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.order-details-card-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type=checkbox] {
+        transform: scale(1.5);
+    }
 }

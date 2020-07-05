@@ -10,22 +10,40 @@
         <span>Quantity</span>
         <span>Purchased</span>
     </div>-->
-    <div class="order-details-container">
-        <span class="order-details-container-header">No.</span>
-        <span class="order-details-container-header">Product Name</span>
-        <span class="order-details-container-header">Quantity</span>
-        <span class="order-details-container-header">Purchased</span>
-        <ng-container *ngFor="let product of order.orderProducts; index as number">
-                <span class="order-details-container-item">{{number + 1}}</span>
-                <span class="order-details-container-item">{{product.name}}</span>
-                <span class="order-details-container-center-item">{{product.quantity}}</span>
-                <div class="order-details-container-center-item">
+    <div *ngIf="windowSize.width > 350">
+        <div class="order-details-container">
+            <span class="order-details-container-header">No.</span>
+            <span class="order-details-container-header">Product Name</span>
+            <span class="order-details-container-header">Quantity</span>
+            <span class="order-details-container-header">Purchased</span>
+            <ng-container *ngFor="let product of order.orderProducts; index as number">
+                    <span class="order-details-container-item">{{number + 1}}</span>
+                    <span class="order-details-container-item">{{product.name}}</span>
+                    <span class="order-details-container-center-item">{{product.quantity}}</span>
+                    <div class="order-details-container-center-item">
+                        <input
+                            type="checkbox" 
+                            [checked]="product.purchased" 
+                            (change)="product.purchased = !product.purchased">
+                    </div>
+            </ng-container>
+        </div>
+    </div>
+
+    <div *ngIf="windowSize.width <= 350">
+        <div class="order-details-card-container">
+            <div *ngFor="let product of order.orderProducts; index as number" 
+                class="order-details-card">
+                <p>{{product.name}}</p>
+                <p>{{product.quantity}}</p>
+                <div class="order-details-card-center">
                     <input
                         type="checkbox" 
                         [checked]="product.purchased" 
                         (change)="product.purchased = !product.purchased">
                 </div>
-        </ng-container>
+            </div>
+        </div>
     </div>
     <div>{{windowSize.width}}</div>
 </div>
