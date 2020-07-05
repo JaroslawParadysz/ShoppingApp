@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailsComponent } from './order-details/order-detials.component';
+
+import { WindowService } from './services/window';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +20,10 @@ import { OrderDetailsComponent } from './order-details/order-detials.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'windowObject', useValue: window },
+    WindowService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,18 +1,23 @@
 import { OrderService } from './../services/order';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { WindowService, WindowSize } from './../services/window';
+
 @Component({
     selector: 'app-order-details',
     templateUrl: 'order-details.component.html',
     styleUrls: ['order-details.component.scss']
 })
 
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
+    windowSize: WindowSize;
+    subscription;
     orderId;
     order;
 
     constructor(
         private service: OrderService,
+        private windowService: WindowService,
         private route: ActivatedRoute) {
             route.paramMap.subscribe(x => {
                 this.orderId = x.get('orderId');
@@ -21,5 +26,13 @@ export class OrderDetailsComponent implements OnInit {
             });
         }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.subscription = this.windowService.windowSizeChanged.subscribe(
+            value => this.windowSize = value
+        );
+    }
+
+    ngOnDestroy() {
+        this.subscription = null;
+      }
 }
