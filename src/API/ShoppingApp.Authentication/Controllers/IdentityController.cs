@@ -13,9 +13,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingApp.Authentication.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class IdentityController : ControllerBase
+    public class IdentityController : ApiController
     {
         private readonly UserManager<User> _userManager;
         private readonly ApplicationSettings _appSettings;
