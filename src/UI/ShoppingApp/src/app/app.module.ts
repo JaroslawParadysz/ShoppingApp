@@ -11,6 +11,7 @@ import { OrderDetailsComponent } from './order-details/order-detials.component';
 
 import { WindowService } from './services/window';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './login/login.component';
     OrderListComponent,
     OrderDetailsComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
