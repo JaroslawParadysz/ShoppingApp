@@ -1,10 +1,12 @@
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using ShoppingApp.API.Extensions;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Application.Configuration.UnitOfWork;
@@ -18,6 +20,9 @@ using ShoppingApp.Infrastructure.SqlServer.Domain.Order;
 using ShoppingApp.Infrastructure.SqlServer.Domain.Product;
 using ShoppingApp.Infrastructure.SqlServer.SeedWork;
 using System;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ShoppingApp.API
 {
@@ -33,6 +38,32 @@ namespace ShoppingApp.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var appSettingsSection = Configuration.GetSection("ApplicationSettings");
+            services.Configure<ApplicationSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<ApplicationSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.IncludeErrorDetails = true;
+                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+
             services.AddDbContext<ShoppingAppContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"),
                     options => options.EnableRetryOnFailure());
@@ -69,8 +100,9 @@ namespace ShoppingApp.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
