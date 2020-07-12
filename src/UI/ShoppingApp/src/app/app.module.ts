@@ -12,6 +12,7 @@ import { OrderDetailsComponent } from './order-details/order-detials.component';
 import { WindowService } from './services/window';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [
     { provide: 'windowObject', useValue: window },
-    WindowService
+    WindowService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

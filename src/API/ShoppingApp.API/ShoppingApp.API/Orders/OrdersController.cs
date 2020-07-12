@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.Application.Orders.GetOrderDetails;
 using ShoppingApp.Application.Orders.GetOrders;
@@ -22,6 +23,7 @@ namespace ShoppingApp.API.Orders
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetOrders()
         {
             IEnumerable<Application.Orders.GetOrders.OrderDto> orders = await _mediator.Send(new GetOrdersQuery());

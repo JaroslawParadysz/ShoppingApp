@@ -53,12 +53,13 @@ namespace ShoppingApp.Authentication
             .AddJwtBearer(x => {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
+                x.IncludeErrorDetails = true;
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
                 };
             });
 
