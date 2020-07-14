@@ -7,7 +7,20 @@
     flex: 1 0 100%;
     margin: 0.4rem;
     padding: 0.4rem;
-    background-color: gray;
-    border-radius: 0.3rem;
+    border: solid thin;
+    border-color: purple;
+    border-radius: 0.2rem;
     text-align: center;    
+}
+
+a {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}
+a:hover {
+    text-decoration: none;
+}
+  
+a:active {
+    text-decoration: note;
 }

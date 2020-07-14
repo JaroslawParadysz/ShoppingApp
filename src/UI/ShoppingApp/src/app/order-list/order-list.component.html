@@ -1,7 +1,13 @@
-<div class="order-list-container">
-    <div *ngFor="let order of orders">
-        <div class="order-container">
-            <a [routerLink]="'order/'+ order.orderId">{{order.title}}</a>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="order-list-container col-lg-4">
+            <div *ngFor="let order of orders">
+                <div class="order-container">
+                    <a [routerLink]="'order/'+ order.orderId">{{order.title}}</a>
+                </div>
+            </div>
         </div>
+        <div class="col-lg-4"></div>
     </div>
 </div>
