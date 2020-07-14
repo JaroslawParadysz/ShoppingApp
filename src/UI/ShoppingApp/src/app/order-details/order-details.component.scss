@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .order-details-header {
     text-align: center;
 }
@@ -37,8 +39,9 @@
 
 .order-details-card {
     flex: 1 0 100%;
-    border: solid thin black;
-    border-radius: 0.5rem;
+    border: $border-values;
+    border-color: $border-color;
+    border-radius: $border-radius;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
 }

@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .order-list-container {
     display: flex;
     flex-direction: column;
@@ -7,9 +9,9 @@
     flex: 1 0 100%;
     margin: 0.4rem;
     padding: 0.4rem;
-    border: solid thin;
-    border-color: purple;
-    border-radius: 0.2rem;
+    border: $border-values;
+    border-color: $border-color;
+    border-radius: $border-radius;
     text-align: center;    
 }
 
