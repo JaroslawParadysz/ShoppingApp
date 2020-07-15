@@ -31,6 +31,7 @@ namespace ShoppingApp.Application.Orders.GetOrderDetails
             OrderDto order = await dbConnection.QuerySingleOrDefaultAsync<OrderDto>(orderSql, new { request.OrderId });
 
             const string orderProductsSql = "SELECT " +
+                "OP.OrderProductId, " +
                 "p.Name, " +
                 "OP.Purchased, " +
                 "OP.Quantity " +

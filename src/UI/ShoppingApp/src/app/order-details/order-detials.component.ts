@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs';
 import { OrderService } from './../services/order';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WindowService, WindowSize } from './../services/window';
+import { OrderDetailsDto } from '../models/order-details.dto';
 
 @Component({
     selector: 'app-order-details',
@@ -13,7 +15,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     windowSize: WindowSize;
     subscription;
     orderId;
-    order;
+    orderDetailsDto: OrderDetailsDto;
 
     constructor(
         private service: OrderService,
@@ -21,8 +23,7 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute) {
             route.paramMap.subscribe(x => {
                 this.orderId = x.get('orderId');
-                service.getOrderDetails(this.orderId)
-                    .subscribe(y => this.order = y);
+                this.loadData();
             });
         }
 
@@ -32,13 +33,23 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
         );
     }
 
-    onChanged(checked, name) {
-        console.log('OK');
-        console.log(checked);
-        console.log(name);
+    onChanged(checked, orderProductId) {
+        const request = { Purchased: checked };
+        this.service.updateOrderProduct(this.orderId, orderProductId, request)
+            .subscribe(() => {
+                this.loadData();
+            });
     }
 
     ngOnDestroy() {
         this.subscription = null;
+    }
+
+    private loadData() {
+        return this.service.getOrderDetails(this.orderId)
+            .subscribe(orderDetailsDto => {
+                console.log(orderDetailsDto);
+                this.orderDetailsDto = orderDetailsDto;
+            });
     }
 }

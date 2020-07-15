@@ -1,6 +1,9 @@
-import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { AuthService } from './auth.service';
+import { OrderDetailsDto } from '../models/order-details.dto';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class OrderService {
@@ -12,9 +15,18 @@ export class OrderService {
         return this.http.get('https://localhost:44337/api/orders', httpOptions);
     }
 
-    getOrderDetails(orderId) {
+    getOrderDetails(orderId): Observable<OrderDetailsDto> {
         const httpOptions = this.createHttpOptions();
-        return this.http.get('https://localhost:44337/api/orders/' + orderId, httpOptions);
+        const url: string = 'https://localhost:44337/api/orders/' + orderId;
+        return this.http.get<OrderDetailsDto>(
+            url,
+            httpOptions);
+    }
+
+    updateOrderProduct(orderId, orderProductId, request) {
+        const httpOptions = this.createHttpOptions();
+        const url = 'https://localhost:44337/api/orders/' + orderId + '/order-product/' + orderProductId;
+        return this.http.put(url, request, httpOptions);
     }
 
     private createHttpOptions() {
