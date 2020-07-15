@@ -32,7 +32,13 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
         );
     }
 
+    onChanged(checked, name) {
+        console.log('OK');
+        console.log(checked);
+        console.log(name);
+    }
+
     ngOnDestroy() {
         this.subscription = null;
-      }
+    }
 }

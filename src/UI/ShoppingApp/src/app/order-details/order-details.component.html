@@ -24,7 +24,7 @@
                         <input
                             type="checkbox" 
                             [checked]="product.purchased" 
-                            (change)="product.purchased = !product.purchased">
+                            (change)="onChanged($event.target.checked, product.name)">
                     </div>
             </ng-container>
         </div>
@@ -40,7 +40,7 @@
                     <input
                         type="checkbox" 
                         [checked]="product.purchased" 
-                        (change)="product.purchased = !product.purchased">
+                        (change)="onChanged($event.target, product.name)">
                 </div>
             </div>
         </div>
