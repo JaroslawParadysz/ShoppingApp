@@ -10,7 +10,7 @@ using ShoppingApp.Infrastructure.SqlServer.Database;
 namespace ShoppingApp.Infrastructure.SqlServer.Migrations
 {
     [DbContext(typeof(ShoppingAppContext))]
-    [Migration("20200618165251_Initial")]
+    [Migration("20200718140057_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,8 +60,11 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<Guid>("ProductId")
+                            b1.Property<Guid?>("ProductId")
                                 .HasColumnType("uniqueidentifier");
+
+                            b1.Property<bool>("Purchased")
+                                .HasColumnType("bit");
 
                             b1.Property<int>("Quantity")
                                 .HasColumnType("int");
@@ -77,11 +80,9 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.WithOwner("Order")
                                 .HasForeignKey("OrderId");
 
-                            b1.HasOne("ShoppingApp.Domain.Products.Product", null)
+                            b1.HasOne("ShoppingApp.Domain.Products.Product", "Product")
                                 .WithMany()
-                                .HasForeignKey("ProductId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
+                                .HasForeignKey("ProductId");
                         });
                 });
 #pragma warning restore 612, 618

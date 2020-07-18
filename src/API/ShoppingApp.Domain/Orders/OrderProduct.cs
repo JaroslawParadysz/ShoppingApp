@@ -6,10 +6,9 @@ namespace ShoppingApp.Domain.Orders
     public class OrderProduct
     {
         public Guid OrderProductId { get; private set; }
-        public Guid OrderId { get; private set; }
-        public Guid ProductId { get; private set; }
         public int Quantity { get; private set; }
         public Order Order { get; private set; }
+        public Product Product { get; private set; }
         public bool Purchased { get; private set; }
 
         private OrderProduct()
@@ -21,12 +20,12 @@ namespace ShoppingApp.Domain.Orders
             Purchased = purchased;
         }
 
-        internal static OrderProduct Create(Order order, Guid productId, int quantity)
+        internal static OrderProduct Create(Order order, Product product, int quantity)
         {
             return new OrderProduct()
             {
                 Order = order,
-                ProductId = productId,
+                Product = product,
                 Quantity = quantity
             };
         }

@@ -23,9 +23,9 @@ namespace ShoppingApp.Domain.Orders
             return new Order() { Title = orderTitle };
         }
 
-        public void AddProduct(Guid productId, int quantity)
+        public void AddProduct(Product product, int quantity)
         {
-            _orderProducts.Add(OrderProduct.Create(this, productId, quantity));
+            _orderProducts.Add(OrderProduct.Create(this, product, quantity));
         }
 
         public void UpdateTitle(string newTitle)

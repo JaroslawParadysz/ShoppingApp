@@ -1,12 +1,10 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.Products;
 using ShoppingApp.Domain.SeedWork;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,7 +53,7 @@ namespace ShoppingApp.Application.Service
         {
             foreach (Product product in newProducts)
             {
-                order.AddProduct(product.ProductId, 2);
+                order.AddProduct(product, 2);
             }
         }
 

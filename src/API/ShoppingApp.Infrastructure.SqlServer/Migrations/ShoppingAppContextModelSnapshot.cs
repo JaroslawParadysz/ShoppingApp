@@ -58,7 +58,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.Property<Guid>("OrderId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<Guid>("ProductId")
+                            b1.Property<Guid?>("ProductId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<bool>("Purchased")
@@ -78,11 +78,9 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                             b1.WithOwner("Order")
                                 .HasForeignKey("OrderId");
 
-                            b1.HasOne("ShoppingApp.Domain.Products.Product", null)
+                            b1.HasOne("ShoppingApp.Domain.Products.Product", "Product")
                                 .WithMany()
-                                .HasForeignKey("ProductId")
-                                .OnDelete(DeleteBehavior.Cascade)
-                                .IsRequired();
+                                .HasForeignKey("ProductId");
                         });
                 });
 #pragma warning restore 612, 618

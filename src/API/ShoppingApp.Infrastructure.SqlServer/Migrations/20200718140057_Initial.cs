@@ -36,9 +36,10 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                 columns: table => new
                 {
                     OrderProductId = table.Column<Guid>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     OrderId = table.Column<Guid>(nullable: false),
-                    ProductId = table.Column<Guid>(nullable: false),
-                    Quantity = table.Column<int>(nullable: false)
+                    ProductId = table.Column<Guid>(nullable: true),
+                    Purchased = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,7 +55,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
