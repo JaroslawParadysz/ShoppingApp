@@ -6,14 +6,15 @@ namespace ShoppingApp.Infrastructure.SqlServer.TypesConfigurations
 {
     internal class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
     {
-        private readonly string orderProducts = "_orderProducts";
+        public static readonly string OrderProducts = "_orderProducts";
+        public static readonly string Product = "Product";
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.ToTable("Orders");
 
             builder.HasKey(b => b.OrderId);
 
-            builder.OwnsMany<OrderProduct>(orderProducts, x =>
+            builder.OwnsMany<OrderProduct>(OrderProducts, x =>
             {
                 x.ToTable("OrderProducts");
                 x.HasKey(y => y.OrderProductId);

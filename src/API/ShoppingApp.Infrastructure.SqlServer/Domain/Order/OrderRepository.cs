@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Infrastructure.SqlServer.Database;
+using ShoppingApp.Infrastructure.SqlServer.SeedWork;
+using ShoppingApp.Infrastructure.SqlServer.TypesConfigurations;
 using System;
 using System.Threading.Tasks;
 
@@ -28,6 +30,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Domain.Order
         public async Task<ShoppingApp.Domain.Orders.Order> GetOrder(Guid orderId)
         {
             return await _shoppingAppContext.Orders
+                .IncludePath(OrderEntityTypeConfiguration.OrderProducts, OrderEntityTypeConfiguration.Product)
                 .SingleOrDefaultAsync(x => x.OrderId == orderId);
         }
     }
