@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
 import { AppInterceptor } from './services/AppInterceptor';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AppInterceptor } from './services/AppInterceptor';
     OrderDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

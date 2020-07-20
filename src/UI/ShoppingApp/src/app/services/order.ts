@@ -29,6 +29,12 @@ export class OrderService {
         return this.http.put(url, request, httpOptions);
     }
 
+    isLogged(): Observable<any> {
+        const httpOptions = this.createHttpOptions();
+        const url = 'https://localhost:44337/api/users';
+        return this.http.get(url, httpOptions);
+    }
+
     private createHttpOptions() {
         const token = this.auth.getToken();
         const authorizationHeader = 'Bearer ' + token;

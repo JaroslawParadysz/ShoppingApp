@@ -22,39 +22,13 @@
     flex: 1;
   }
 
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #b2b8be;
-    color: white;
-    font-weight: 600;
-  }
-
   .content {
     margin: 82px auto 32px;
   }
 
 </style>
 
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-
-  <span>Shopping App</span>
-  <div class="spacer"></div>
-  <div class="link-container">
-    <a [routerLink] = "['']">
-      <h3>Orders</h3>      
-    </a>
-    <a>
-      <h3>Products</h3>
-    </a>
-  </div>
-</div>
+<app-menu></app-menu>
 
 <div class="content" role="main">
   <router-outlet></router-outlet>
