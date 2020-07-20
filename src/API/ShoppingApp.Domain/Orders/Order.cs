@@ -12,7 +12,8 @@ namespace ShoppingApp.Domain.Orders
         public Guid OrderId { get; private set; }
         public string Title { get; private set; }
 
-        private ICollection<OrderProduct> _orderProducts;
+        private readonly List<OrderProduct> _orderProducts;
+        public IReadOnlyCollection<OrderProduct> OrderProducts => _orderProducts.AsReadOnly();
 
         private Order()
         {

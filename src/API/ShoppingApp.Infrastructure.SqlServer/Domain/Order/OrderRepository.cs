@@ -30,7 +30,8 @@ namespace ShoppingApp.Infrastructure.SqlServer.Domain.Order
         public async Task<ShoppingApp.Domain.Orders.Order> GetOrder(Guid orderId)
         {
             return await _shoppingAppContext.Orders
-                .IncludePath(OrderEntityTypeConfiguration.OrderProducts, OrderEntityTypeConfiguration.Product)
+                .Include(x => x.OrderProducts)
+                .ThenInclude(x => x.Product)
                 .SingleOrDefaultAsync(x => x.OrderId == orderId);
         }
     }

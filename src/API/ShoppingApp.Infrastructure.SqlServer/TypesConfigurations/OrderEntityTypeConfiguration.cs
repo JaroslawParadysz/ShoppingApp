@@ -14,14 +14,15 @@ namespace ShoppingApp.Infrastructure.SqlServer.TypesConfigurations
 
             builder.HasKey(b => b.OrderId);
 
-            builder.OwnsMany<OrderProduct>(OrderProducts, x =>
-            {
-                x.ToTable("OrderProducts");
-                x.HasKey(y => y.OrderProductId);
-                x.WithOwner(y => y.Order);
-                x.HasOne(x => x.Product)
-                    .WithMany();
-            });
+            builder.OwnsMany<OrderProduct>(x => x.OrderProducts, x =>
+                {
+                    x.ToTable("OrderProducts");
+                    x.HasKey(y => y.OrderProductId);
+                    x.WithOwner(y => y.Order);
+                    x.HasOne(x => x.Product)
+                        .WithMany();
+                }
+            );
         }
     }
 }
