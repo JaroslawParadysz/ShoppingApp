@@ -1,12 +1,18 @@
-<div *ngIf="isLoged" class="toolbar" role="banner">
-    <span>Shopping App</span>
-    <div class="spacer"></div>
-    <div class="link-container">
-      <a [routerLink] = "['']">
-        <h3>Orders</h3>      
-      </a>
-      <a>
-        <h3>Products</h3>
-      </a>
-    </div>
+<div *ngIf="isLoged">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" [routerLink] = "['']">Shopping App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink] = "['']">Orders <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink] = "['']">Products</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 </div>
