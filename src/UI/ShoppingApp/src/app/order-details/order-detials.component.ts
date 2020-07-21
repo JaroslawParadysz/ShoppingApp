@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { OrderService } from './../services/order';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -48,7 +47,6 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
     private loadData() {
         return this.service.getOrderDetails(this.orderId)
             .subscribe(orderDetailsDto => {
-                console.log(orderDetailsDto);
                 this.orderDetailsDto = orderDetailsDto;
             });
     }

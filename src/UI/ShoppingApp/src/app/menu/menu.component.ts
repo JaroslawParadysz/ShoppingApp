@@ -23,11 +23,9 @@ export class MenuComponent implements OnInit {
         this.orderService.isLogged()
             .subscribe(() => {
                 this.isLoged = true;
-                console.log('OK');
             },
                 (error) => {
                     this.isLoged = false;
-                    console.log('Error');
                     this.setDelay();
                 }
             );
