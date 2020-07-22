@@ -9,15 +9,14 @@
     flex: 1 0 100%;
     margin: 0.4rem;
     padding: 0.4rem;
-    border: $border-values;
-    border-color: $border-color;
-    border-radius: $border-radius;
-    text-align: center;    
+    text-align: center; 
+    background-color: $uui-color-purple;   
 }
 
 a {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.2rem;
+    color: white;
 }
 a:hover {
     text-decoration: none;

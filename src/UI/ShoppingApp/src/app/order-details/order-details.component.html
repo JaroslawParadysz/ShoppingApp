@@ -10,39 +10,25 @@
         <span>Quantity</span>
         <span>Purchased</span>
     </div>-->
-    <div *ngIf="windowSize.width > 350">
-        <div class="order-details-container">
-            <span class="order-details-container-header">No.</span>
-            <span class="order-details-container-header">Product Name</span>
-            <span class="order-details-container-header">Quantity</span>
-            <span class="order-details-container-header">Purchased</span>
-            <ng-container *ngFor="let product of orderDetailsDto.orderProducts; index as number">
-                    <span class="order-details-container-item">{{number + 1}}</span>
-                    <span class="order-details-container-item">{{product.name}}</span>
-                    <span class="order-details-container-center-item">{{product.quantity}}</span>
-                    <div class="order-details-container-center-item">
-                        <input
-                            type="checkbox" 
-                            [checked]="product.purchased" 
-                            (change)="onChanged($event.target.checked, product.orderProductId)">
-                    </div>
-            </ng-container>
-        </div>
-    </div>
-
-    <div *ngIf="windowSize.width <= 350">
-        <div class="order-details-card-container">
-            <div *ngFor="let product of orderDetailsDto.orderProducts; index as number" 
-                class="order-details-card">
-                <p>{{product.name}}</p>
-                <p>{{product.quantity}}</p>
-                <div class="order-details-card-center">
-                    <input
+    <table>
+        <thead>
+            <th>No.</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Purchased</th>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let product of  orderDetailsDto.orderProducts; index as number">
+                <tr>
+                    <td>{{number + 1}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>                        <input
                         type="checkbox" 
                         [checked]="product.purchased" 
-                        (change)="onChanged($event.target, product.name)">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        (change)="onChanged($event.target.checked, product.orderProductId)">
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
