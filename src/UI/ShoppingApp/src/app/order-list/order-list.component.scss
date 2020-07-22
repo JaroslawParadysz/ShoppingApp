@@ -10,7 +10,9 @@
     margin: 0.4rem;
     padding: 0.4rem;
     text-align: center; 
-    background-color: $uui-color-purple;   
+    background-color: $uui-color-purple;
+    box-shadow: 0 0 12px 1px $uui-box-shadow-color-purple;
+    border-radius: $border-radious;
 }
 
 a {
