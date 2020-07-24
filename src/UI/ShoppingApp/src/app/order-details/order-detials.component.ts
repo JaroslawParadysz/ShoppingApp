@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Observable, EMPTY } from 'rxjs';
 import { OrderService } from './../services/order';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -22,7 +23,7 @@ export class OrderDetailsComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.subscribe(x => {
             this.orderId = x.get('orderId');
-            this.loadData();
+            this.setOrderDetailsDto();
         });
     }
 
@@ -30,11 +31,16 @@ export class OrderDetailsComponent implements OnInit {
         const request = { Purchased: checked };
         this.service.updateOrderProduct(this.orderId, orderProductId, request)
             .subscribe(() => {
-                this.loadData();
+                this.setOrderDetailsDto();
             });
     }
 
-    private loadData() {
-        this.OrderDetailsDto$ = this.service.getOrderDetails(this.orderId);
+    private setOrderDetailsDto() {
+        this.OrderDetailsDto$ = this.service.getOrderDetails(this.orderId).pipe(
+            catchError(error => {
+                console.log(error);
+                return EMPTY;
+            })
+        );
     }
 }
