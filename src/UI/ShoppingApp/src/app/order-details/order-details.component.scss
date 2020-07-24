@@ -1,10 +1,16 @@
 @import "../../variables.scss";
 
+.order-details-header {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
     th {
         font-size: 1.2rem;
+        color: $uui-color-white;
         background-color: $uui-color-purple;
         text-align: center;
     }
@@ -27,7 +33,7 @@ table {
             padding: 10px;
             margin-top: 15px;
             background-color: $uui-color-purple;
-            color: white;
+            color: $uui-color-white;
         }
         td {
             text-align: left;
@@ -39,9 +45,4 @@ table {
             }
         }
     }
-}
-
-.order-details-header {
-    text-align: center;
-    font-size: 1.2rem;
 }

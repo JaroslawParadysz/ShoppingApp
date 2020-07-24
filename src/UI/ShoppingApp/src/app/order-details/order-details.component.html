@@ -1,15 +1,10 @@
-<div *ngIf="orderDetailsDto">
+<div *ngIf="OrderDetailsDto$ | async as orderDetailsDto">
     <div class="order-details-header">
         <p>
             {{orderDetailsDto.title}}
         </p>
     </div>
-    <!--<div class="order-details-container-header">
-        <span>No.</span>
-        <span>Product Name</span>
-        <span>Quantity</span>
-        <span>Purchased</span>
-    </div>-->
+
     <table>
         <thead>
             <th>No.</th>

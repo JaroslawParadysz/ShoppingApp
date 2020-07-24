@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { OrderService } from './../services/order';
+import { of } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-order-list',
