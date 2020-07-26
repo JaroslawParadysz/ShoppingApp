@@ -1,6 +1,6 @@
 import { OrderProductDto } from './order-product.dto';
 
-export class OrderDetailsDto {
+export interface OrderDetailsDto {
     orderId: string;
     title: string;
     orderProducts: OrderProductDto[];
