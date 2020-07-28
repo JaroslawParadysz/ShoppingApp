@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -68,7 +69,7 @@ namespace ShoppingApp.API
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"),
                     options => options.EnableRetryOnFailure());
             });
-            services.AddControllers();
+            services.AddControllersServices();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISqlConnectionFactory>(x => new SqlConnectionFactory(Configuration.GetConnectionString("DefaultConnectionString")));

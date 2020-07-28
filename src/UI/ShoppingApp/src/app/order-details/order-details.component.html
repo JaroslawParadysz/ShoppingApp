@@ -1,8 +1,11 @@
 <div *ngIf="OrderDetailsDto$ | async as orderDetailsDto">
     <div class="order-details-header">
-        <p>
+        <p class="order-title">
             {{orderDetailsDto.title}}
         </p>
+    </div>
+    <div class="order-details-add-new-product">
+        <button type="button" class="btn btn-primary" (click)="onAddNewOrderProduct($event)">&#43;</button>
     </div>
 
     <table>

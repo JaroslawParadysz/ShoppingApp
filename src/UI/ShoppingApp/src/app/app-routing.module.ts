@@ -1,3 +1,4 @@
+import { AddNewOrderProductComponent } from './add-new-order-product/add-new-order-product.component';
 import { RegisterComponent } from './register/register.component';
 import { OrderDetailsComponent } from './order-details/order-detials.component';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path: '', component: OrderListComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'order/:orderId', component: OrderDetailsComponent }
+  { path: 'order/:orderId', component: OrderDetailsComponent },
+  { path: 'add-new-order-product/:orderId', component: AddNewOrderProductComponent }
 ];
 
 @NgModule({

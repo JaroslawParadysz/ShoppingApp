@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using ShoppingApp.API.Orders.Validators;
 using ShoppingApp.Application.Configuration.Commands;
 using ShoppingApp.Application.Configuration.UnitOfWork;
 using ShoppingApp.Application.SeedWork;
@@ -14,6 +16,16 @@ namespace ShoppingApp.API.Extensions
             services.AddMediatR(typeof(ICommand));
             services.AddScoped(typeof(ICommandProcessor<,>), typeof(CommandProcessor<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CQRSPipelineBehaviour<,>));
+            return services;
+        }
+
+        public static IServiceCollection AddControllersServices(this IServiceCollection services)
+        {
+            services.AddControllers()
+                .AddFluentValidation(x => {
+                    x.RegisterValidatorsFromAssemblyContaining<UpdateOrderProductRequestValidator>();
+                    x.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                });
             return services;
         }
     }

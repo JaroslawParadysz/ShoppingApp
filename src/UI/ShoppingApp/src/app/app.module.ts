@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
 import { AppInterceptor } from './services/AppInterceptor';
 import { MenuComponent } from './menu/menu.component';
+import { AddNewOrderProductComponent } from './add-new-order-product/add-new-order-product.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MenuComponent } from './menu/menu.component';
     OrderDetailsComponent,
     LoginComponent,
     RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    AddNewOrderProductComponent
   ],
   imports: [
     BrowserModule,

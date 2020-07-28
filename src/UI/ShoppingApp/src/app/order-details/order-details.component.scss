@@ -1,9 +1,20 @@
 @import "../../variables.scss";
 
 .order-details-header {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.order-details-add-new-product {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.order-title {
     font-size: 1.2rem;
 }
+
 
 table {
     border-collapse: collapse;

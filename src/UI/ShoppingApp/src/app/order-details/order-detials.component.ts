@@ -3,7 +3,7 @@ import { Observable, EMPTY } from 'rxjs';
 
 import { OrderService } from './../services/order';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-order-details',
@@ -24,7 +24,8 @@ export class OrderDetailsComponent {
 
     constructor(
         private service: OrderService,
-        private route: ActivatedRoute) { }
+        private route: ActivatedRoute,
+        private router: Router) { }
 
     onChanged(checked, orderProductId) {
         const request = { Purchased: checked };
@@ -36,5 +37,15 @@ export class OrderDetailsComponent {
                 return EMPTY;
             })
         ).subscribe(() => {});
+    }
+
+    onAddNewOrderProduct($event) {
+        this.route.paramMap.pipe(
+            map(x => x.get('orderId'))
+        ).subscribe(orderId => {
+            const url = 'add-new-order-product/' + orderId;
+            console.log('UrL: ' + url);
+            this.router.navigateByUrl(url);
+        });
     }
 }
