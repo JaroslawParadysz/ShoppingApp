@@ -55,7 +55,6 @@ export class OrderDetailsComponent implements OnDestroy {
                 map(x => x.get('orderId'))
             ).subscribe(orderId => {
                 const url = 'add-new-order-product/' + orderId;
-                console.log('UrL: ' + url);
                 this.router.navigateByUrl(url);
             });
     }

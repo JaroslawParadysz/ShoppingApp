@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingApp.Domain.Products;
 using ShoppingApp.Infrastructure.SqlServer.Database;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,6 +24,12 @@ namespace ShoppingApp.Infrastructure.SqlServer.Domain.Product
         public async Task<bool> AnyAsync()
         {
             return await _shoppingAppContext.Products.AnyAsync();
+        }
+
+        public async Task<ShoppingApp.Domain.Products.Product> GetProduct(Guid productId)
+        {
+            var product = await _shoppingAppContext.Products.SingleOrDefaultAsync(x => x.ProductId == productId);
+            return product;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ShoppingApp.API.Orders.Requests;
+using ShoppingApp.Application.Orders.CreateOrderProduct;
 using ShoppingApp.Application.Orders.GetOrderDetails;
 using ShoppingApp.Application.Orders.GetOrders;
 using ShoppingApp.Application.Orders.UpdateOrderDetails;
@@ -58,5 +60,13 @@ namespace ShoppingApp.API.Orders
             return Ok();
         }
 
+        [HttpPost("{orderId}/order-product")]
+        public async Task<IActionResult> AddNewOrderProduct(
+            [FromRoute]Guid orderId,
+            [FromBody]AddNewOrderProductRequest request)
+        {
+            await _mediator.Send(new CreateOrderProductCommand(orderId, request.ProductId, request.Quantity));
+            return Ok();
+        }
     }   
 }

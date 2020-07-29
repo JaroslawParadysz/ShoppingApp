@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Orders\AddNewProduct\" />
+    <Compile Remove="Orders\AddNewProduct\**" />
+    <EmbeddedResource Remove="Orders\AddNewProduct\**" />
+    <None Remove="Orders\AddNewProduct\**" />
   </ItemGroup>
 
   <ItemGroup>

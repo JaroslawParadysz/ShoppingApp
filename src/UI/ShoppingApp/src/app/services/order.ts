@@ -29,6 +29,12 @@ export class OrderService {
         return this.http.put(url, request, httpOptions);
     }
 
+    addNewOrderProduct(orderId, request) {
+        const httpOptions = this.auth.createHttpOptions();
+        const url = 'https://localhost:44337/api/orders/' + orderId + '/order-product/';
+        return this.http.post(url, request, httpOptions);
+    }
+
     isLogged(): Observable<any> {
         const httpOptions = this.auth.createHttpOptions();
         const url = 'https://localhost:44337/api/users';

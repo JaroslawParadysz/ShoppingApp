@@ -9,5 +9,6 @@ namespace ShoppingApp.Domain.Products
     {
         Task<bool> AnyAsync();
         Task AddRangeAsync(List<Product> newProducts);
+        Task<Product> GetProduct(Guid productId);
     }
 }
