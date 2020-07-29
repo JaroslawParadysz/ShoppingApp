@@ -1,0 +1,18 @@
+<div class="containder">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form [formGroup]="addNewOrderForm" (ngSubmit)="onAddNewOrder()">
+                <div class="form-group">
+                    <label for="orderName">Order Name</label>
+                    <input type="text" formControlName="orderName" class="form-control">
+                </div>
+                <div *ngIf="orderName.touched && orderName.errors?.required" class="alert alert-danger">
+                    Order Name is required
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="addNewOrderForm.invalid">Submit</button>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

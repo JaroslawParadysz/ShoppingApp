@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Xml.Schema;
 
 namespace ShoppingApp.Domain.Orders
 {
@@ -28,6 +30,12 @@ namespace ShoppingApp.Domain.Orders
         public void AddProduct(Product product, int quantity)
         {
             _orderProducts.Add(OrderProduct.Create(this, product, quantity));
+        }
+
+        public void DeleteProduct(Guid orderProductId)
+        {
+            var toDelete = _orderProducts.Single(x => x.OrderProductId == orderProductId);
+            _orderProducts.Remove(toDelete);
         }
 
         public void UpdateTitle(string newTitle)

@@ -5,7 +5,7 @@
         </p>
     </div>
     <div class="order-details-add-new-product">
-        <button type="button" class="btn btn-primary" (click)="onAddNewOrderProduct($event)">&#43;</button>
+        <button type="button" class="btn btn-outline-primary" (click)="onAddNewOrderProduct($event)">&#43;</button>
     </div>
 
     <table>
@@ -14,6 +14,7 @@
             <th>Product Name</th>
             <th>Quantity</th>
             <th>Purchased</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             <ng-container *ngFor="let product of  orderDetailsDto.orderProducts; index as number">
@@ -25,6 +26,9 @@
                         type="checkbox" 
                         [checked]="product.purchased" 
                         (change)="onChanged($event.target.checked, product.orderProductId)">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning" (click)="onDeleteOrderProduct($event, product.orderProductId)">DELETE</button>
                     </td>
                 </tr>
             </ng-container>

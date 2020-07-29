@@ -2,6 +2,11 @@
     <div class="row">
         <div class="col-lg-4"></div>
         <div class="order-list-container col-lg-4">
+            <div class='create-new-order'>
+                <a [routerLink]="'add-new-order'">
+                    <button type="button" class="btn btn-outline-primary">&#43;</button>
+                </a>
+            </div>
             <div *ngFor="let order of orders">
                 <div class="order-container">
                     <a [routerLink]="'order/'+ order.orderId">{{order.title}}</a>

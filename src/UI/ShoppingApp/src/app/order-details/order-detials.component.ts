@@ -1,5 +1,5 @@
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { Observable, EMPTY, Subscription } from 'rxjs';
+import { EMPTY, Subscription } from 'rxjs';
 
 import { OrderService } from './../services/order';
 import { Component, OnDestroy } from '@angular/core';
@@ -24,6 +24,7 @@ export class OrderDetailsComponent implements OnDestroy {
             return EMPTY;
         })
     );
+
 
     constructor(
         private service: OrderService,
@@ -57,6 +58,22 @@ export class OrderDetailsComponent implements OnDestroy {
                 const url = 'add-new-order-product/' + orderId;
                 this.router.navigateByUrl(url);
             });
+    }
+
+    onDeleteOrderProduct($event, orderProductId) {
+        let orderId: string;
+        this.route.paramMap.pipe(
+            map(x => {
+                orderId = x.get('orderId');
+                return orderId;
+            }),
+            switchMap(x => this.service.deleteOrderProduct(x, orderProductId))
+        ).subscribe(() => {
+            const url = 'order/' + orderId;
+            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+            this.router.onSameUrlNavigation = 'reload';
+            this.router.navigateByUrl(url);
+        });
     }
 
     ngOnDestroy(): void {

@@ -18,6 +18,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AddNewOrderProductComponent } from './add-new-order-product/add-new-order-product.component';
 import { OrderService } from './services/order';
 import { ProductService } from './services/product';
+import { AddNewOrderComponent } from './add-new-order/add-new-order.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ProductService } from './services/product';
     LoginComponent,
     RegisterComponent,
     MenuComponent,
-    AddNewOrderProductComponent
+    AddNewOrderProductComponent,
+    AddNewOrderComponent,
   ],
   imports: [
     BrowserModule,

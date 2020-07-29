@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.Orders.Requests;
+using ShoppingApp.Application.Orders.CreateOrder;
 using ShoppingApp.Application.Orders.CreateOrderProduct;
+using ShoppingApp.Application.Orders.DeleteOrderProduct;
 using ShoppingApp.Application.Orders.GetOrderDetails;
 using ShoppingApp.Application.Orders.GetOrders;
 using ShoppingApp.Application.Orders.UpdateOrderDetails;
@@ -60,12 +62,29 @@ namespace ShoppingApp.API.Orders
             return Ok();
         }
 
+        [HttpDelete("{orderId}/order-product/{orderProductId}")]
+        public async Task<IActionResult> DeleteOrderProduct(
+            [FromRoute]Guid orderId,
+            [FromRoute]Guid orderProductId)
+        {
+            DeleteOrderProductCommand command = new DeleteOrderProductCommand(orderId, orderProductId);
+            await _mediator.Send(command);
+            return Ok();
+        }
+
         [HttpPost("{orderId}/order-product")]
         public async Task<IActionResult> AddNewOrderProduct(
             [FromRoute]Guid orderId,
             [FromBody]AddNewOrderProductRequest request)
         {
             await _mediator.Send(new CreateOrderProductCommand(orderId, request.ProductId, request.Quantity));
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewOrder([FromBody] CreateNewOrderRequest createNewOrderRequest)
+        {
+            await _mediator.Send(new CreateNewOrderCommand(createNewOrderRequest.OrderName));
             return Ok();
         }
     }   
