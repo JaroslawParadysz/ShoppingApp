@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../services/product';
 
 @Component({
     selector: 'app-add-new-order-product',
@@ -7,21 +8,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
     styleUrls: ['add-new-order-product.component.scss']
 })
 export class AddNewOrderProductComponent {
-    addNewProductForm: FormGroup;
-    products$ = [
-        { ProductId: 1, ProductName: 'Ziemniaki' },
-        { ProductId: 2, ProductName: 'Maka' },
-    ];
-
-    constructor(formBuilder: FormBuilder){
+    constructor(formBuilder: FormBuilder,
+                private productService: ProductService){
         this.addNewProductForm = formBuilder.group({
             product: ['', [Validators.required]],
             quantity: ['', [Validators.required]]
         });
     }
 
+    addNewProductForm: FormGroup;
+    products$ = this.productService.getOrders();
+
     onAddNewOrderProduct() {
-        console.log(this.addNewProductForm.value);
+        if (!this.addNewProductForm.invalid){
+            console.log('NO');
+            return;
+        }
+        const orderProductToAdd = {
+            productId: this.product.value,
+            quantity: this.quantity.value
+        };
+        console.log(orderProductToAdd);
     }
 
     get product() {

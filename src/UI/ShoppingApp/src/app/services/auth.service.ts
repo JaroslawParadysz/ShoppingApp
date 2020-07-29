@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -27,4 +27,15 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
+
+  createHttpOptions() {
+    const token = this.getToken();
+    const authorizationHeader = 'Bearer ' + token;
+    const httpOptions = {
+        headers: new HttpHeaders({
+            Authorization: authorizationHeader
+        })
+    };
+    return httpOptions;
+}
 }

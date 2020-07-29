@@ -5,9 +5,9 @@
             <form [formGroup]="addNewProductForm" (ngSubmit)="onAddNewOrderProduct()">
                 <div class="form-group">
                     <label for="product">Product</label>
-                    <select class="form-control">
+                    <select class="form-control" *ngIf="products$ | async as products" formControlName="product">
                         <option disabled>Select Product</option>
-                        <option *ngFor="let product of products$">{{product.ProductName}}</option>
+                        <option [ngValue]="product.productId" *ngFor="let product of products">{{product.productName}}</option>
                     </select>
                 </div>
                 <div *ngIf="product.touched && product.errors?.required" class="alert alert-danger">
@@ -20,7 +20,7 @@
                 <div *ngIf="quantity.touched && quantity.errors?.required" class="alert alert-danger">
                     This field is required
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="addNewProductForm.invalid">Submit</button>
             </form>
         </div>
         <div class="col-lg-4"></div>

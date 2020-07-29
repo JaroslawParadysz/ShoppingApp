@@ -16,6 +16,8 @@ import { AuthService } from './services/auth.service';
 import { AppInterceptor } from './services/AppInterceptor';
 import { MenuComponent } from './menu/menu.component';
 import { AddNewOrderProductComponent } from './add-new-order-product/add-new-order-product.component';
+import { OrderService } from './services/order';
+import { ProductService } from './services/product';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { AddNewOrderProductComponent } from './add-new-order-product/add-new-ord
       multi: true
     },
     WindowService,
-    AuthService
+    AuthService,
+    OrderService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
