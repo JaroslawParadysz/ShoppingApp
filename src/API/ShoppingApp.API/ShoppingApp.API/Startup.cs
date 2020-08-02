@@ -1,16 +1,11 @@
-using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using ShoppingApp.API.Extensions;
-using ShoppingApp.Application.Configuration.Commands;
-using ShoppingApp.Application.Configuration.UnitOfWork;
 using ShoppingApp.Application.SeedWork;
 using ShoppingApp.Domain.Orders;
 using ShoppingApp.Domain.Products;
@@ -21,9 +16,7 @@ using ShoppingApp.Infrastructure.SqlServer.Domain.Order;
 using ShoppingApp.Infrastructure.SqlServer.Domain.Product;
 using ShoppingApp.Infrastructure.SqlServer.SeedWork;
 using System;
-using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingApp.API
 {

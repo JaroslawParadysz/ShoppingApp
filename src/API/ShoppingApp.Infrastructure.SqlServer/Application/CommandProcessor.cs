@@ -28,7 +28,7 @@ namespace ShoppingApp.Infrastructure.SqlServer.Application
             var strategy = _shoppingAppContext.Database.CreateExecutionStrategy();
             TResponse response = await strategy.ExecuteAsync(async () =>
             {
-                using (var transaction = _shoppingAppContext.Database.BeginTransaction(IsolationLevel.RepeatableRead))
+                using (var transaction = _shoppingAppContext.Database.BeginTransaction(IsolationLevel.ReadCommitted))
                 {
                     response = await next();
                     await _unitOfWork.CommitAsync();
