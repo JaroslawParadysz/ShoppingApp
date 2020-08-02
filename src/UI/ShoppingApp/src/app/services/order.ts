@@ -50,6 +50,12 @@ export class OrderService {
         return this.http.post(url, request, httpOptions);
     }
 
+    deleteOrder(orderId) {
+        const httpOptions = this.auth.createHttpOptions();
+        const url = this.orderApiUrl + orderId;
+        return this.http.delete(url, httpOptions);
+    }
+
     isLogged(): Observable<any> {
         const httpOptions = this.auth.createHttpOptions();
         const url = 'https://localhost:44337/api/users';

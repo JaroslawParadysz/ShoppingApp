@@ -10,5 +10,6 @@ namespace ShoppingApp.Domain.Orders
         Task<Order> GetOrder(Guid orderId);
         Task<bool> AnyAsync();
         Task AddAsync(Order order);
+        Task DeleteOrder(Guid orderId);
     }
 }

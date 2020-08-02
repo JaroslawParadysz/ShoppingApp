@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ShoppingApp.API.Orders.Requests;
 using ShoppingApp.Application.Orders.CreateOrder;
 using ShoppingApp.Application.Orders.CreateOrderProduct;
+using ShoppingApp.Application.Orders.DeleteOrder;
 using ShoppingApp.Application.Orders.DeleteOrderProduct;
 using ShoppingApp.Application.Orders.GetOrderDetails;
 using ShoppingApp.Application.Orders.GetOrders;
@@ -59,6 +60,13 @@ namespace ShoppingApp.API.Orders
         {
             UpdateOrderProductCommand command = new UpdateOrderProductCommand(orderId, orderProductId, updateOrderProductRequest.Purchased);
             await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("{orderId}")]
+        public async Task<IActionResult> DeleteOrder([FromRoute]Guid orderId)
+        {
+            await _mediator.Send(new DeleteOrderCommand(orderId));
             return Ok();
         }
 

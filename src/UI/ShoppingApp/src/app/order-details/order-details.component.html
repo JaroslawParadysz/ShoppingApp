@@ -4,8 +4,11 @@
             {{orderDetailsDto.title}}
         </p>
     </div>
-    <div class="order-details-add-new-product">
-        <button type="button" class="btn btn-outline-primary" (click)="onAddNewOrderProduct($event)">&#43;</button>
+    <div class="order-details-buttons">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-warning" (click)="onDeleteOrder($event)">Delete Order</button>
+            <button type="button" class="btn btn-outline-primary" (click)="onAddNewOrderProduct($event)">&#43;Add Product</button>
+        </div>
     </div>
 
     <table>

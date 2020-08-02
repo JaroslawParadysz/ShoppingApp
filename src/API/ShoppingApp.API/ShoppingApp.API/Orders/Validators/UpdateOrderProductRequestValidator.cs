@@ -6,7 +6,9 @@ namespace ShoppingApp.API.Orders.Validators
     {
         public UpdateOrderProductRequestValidator()
         {
-            RuleFor(x => x.Purchased).NotNull().WithMessage("Purchased must not be empty.");
+            RuleFor(x => x.Purchased)
+                .NotNull()
+                .WithMessage("Purchased must not be empty.");
         }
     }
 }

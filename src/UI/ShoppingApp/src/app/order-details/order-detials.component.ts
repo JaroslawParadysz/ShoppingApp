@@ -76,6 +76,15 @@ export class OrderDetailsComponent implements OnDestroy {
         });
     }
 
+    onDeleteOrder($event) {
+        this.route.paramMap.pipe(
+            map(x => x.get('orderId')),
+            switchMap(x => this.service.deleteOrder(x))
+        ).subscribe(() => {
+            this.router.navigateByUrl('');
+        });
+    }
+
     ngOnDestroy(): void {
         if (this.navigateToComponentSubscription) {
             this.navigateToComponentSubscription.unsubscribe();

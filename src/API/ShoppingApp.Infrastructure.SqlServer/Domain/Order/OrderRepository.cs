@@ -27,6 +27,12 @@ namespace ShoppingApp.Infrastructure.SqlServer.Domain.Order
             return await _shoppingAppContext.Orders.AnyAsync();
         }
 
+        public async Task DeleteOrder(Guid orderId)
+        {
+            var order = await _shoppingAppContext.Orders.SingleOrDefaultAsync(x => x.OrderId == orderId);
+            _shoppingAppContext.Orders.Remove(order);
+        }
+
         public async Task<ShoppingApp.Domain.Orders.Order> GetOrder(Guid orderId)
         {
             return await _shoppingAppContext.Orders
