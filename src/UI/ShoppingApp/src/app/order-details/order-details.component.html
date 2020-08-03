@@ -21,7 +21,8 @@
         </thead>
         <tbody>
             <ng-container *ngFor="let product of  orderDetailsDto.orderProducts; index as number">
-                <tr>
+                <tr [ngClass]="{'purchased': product.purchased,
+                            'non-purchaned': !product.purchased}">
                     <td>{{number + 1}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.quantity}}</td>

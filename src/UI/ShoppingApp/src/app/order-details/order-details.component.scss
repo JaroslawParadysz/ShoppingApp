@@ -30,7 +30,23 @@ table {
     }
 }
 
+.non-purchaned {
+    background-color: white;
+}
+.purchased {
+    background-color: white;
+}
+
 @media (max-width: $mobile-width) {
+
+    .non-purchaned {
+        background-color: $uui-color-purple;
+    }
+
+    .purchased {
+        background-color: green;
+    }
+
     thead {
         display: none;
     }
@@ -43,7 +59,6 @@ table {
             border-top: 0;
             padding: 10px;
             margin-top: 15px;
-            background-color: $uui-color-purple;
             color: $uui-color-white;
         }
         td {
@@ -54,6 +69,19 @@ table {
             &:nth-child(2){
                 font-size: 1.2rem;
             }
+            &:nth-child(5){
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+                align-content: flex-end;
+                flex-direction: row;
+            }
         }
+    }
+
+    input[type=checkbox] {
+        width: 1.5rem;
+        height: 1.5rem;
+        -moz-appearance: none;
     }
 }
