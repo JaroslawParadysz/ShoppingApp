@@ -1,3 +1,4 @@
+import { ProductDto } from './../models/product.dto';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { EMPTY, Subscription } from 'rxjs';
 
@@ -31,20 +32,26 @@ export class OrderDetailsComponent implements OnDestroy {
         private route: ActivatedRoute,
         private router: Router) { }
 
-    onChanged(checked, orderProductId) {
+    onChanged(checked, product) {
         if (this.updateOrderProductSubscription) {
             this.updateOrderProductSubscription.unsubscribe();
         }
-
+        let orderId: string;
         const request = { Purchased: checked };
+
         this.updateOrderProductSubscription = this.route.paramMap.pipe(
-            map(x => x.get('orderId')),
-            switchMap(x => this.service.updateOrderProduct(x, orderProductId, request)),
+            map(x => {
+                orderId = x.get('orderId');
+                return orderId;
+            }),
+            switchMap(x => this.service.updateOrderProduct(x, product.orderProductId, request)),
             catchError(error => {
                 console.log(error);
                 return EMPTY;
             })
-        ).subscribe(() => {});
+        ).subscribe(() => {
+            product.purchased = checked;
+        });
     }
 
     onAddNewOrderProduct($event) {
@@ -69,10 +76,7 @@ export class OrderDetailsComponent implements OnDestroy {
             }),
             switchMap(x => this.service.deleteOrderProduct(x, orderProductId))
         ).subscribe(() => {
-            const url = 'order/' + orderId;
-            this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-            this.router.onSameUrlNavigation = 'reload';
-            this.router.navigateByUrl(url);
+            this.reloadComponent(orderId);
         });
     }
 
@@ -92,5 +96,12 @@ export class OrderDetailsComponent implements OnDestroy {
         if (this.updateOrderProductSubscription) {
             this.updateOrderProductSubscription.unsubscribe();
         }
+    }
+
+    private reloadComponent(orderId: string) {
+        const url = 'order/' + orderId;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigateByUrl(url);
     }
 }

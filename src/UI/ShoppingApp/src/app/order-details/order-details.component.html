@@ -29,7 +29,7 @@
                     <td>                        <input
                         type="checkbox" 
                         [checked]="product.purchased" 
-                        (change)="onChanged($event.target.checked, product.orderProductId)">
+                        (change)="onChanged($event.target.checked, product)">
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-warning" (click)="onDeleteOrderProduct($event, product.orderProductId)">DELETE</button>
